@@ -3,7 +3,7 @@ const texts = [
     "AI Enthusiast",
     "Software Developer",
     "Machine Learning Engineer",
-    "App Developer"
+
 ];
 
 let textIndex = 0;
@@ -86,3 +86,4 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         }
     });
 });
+
