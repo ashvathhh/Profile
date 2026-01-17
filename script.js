@@ -68,7 +68,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const typingElement = document.querySelector('.typing');
     if (typingElement) {
         typingElement.textContent = ''; // Clear any initial text
-        type();
+        typingElement.classList.add('active'); // Make it visible
+        setTimeout(type, 100); // Small delay before starting
     }
 });
 
