@@ -108,6 +108,7 @@ nav {
     gap: 15px;
 }
 
+
 .nav-social a {
     width: 36px;
     height: 36px;
@@ -116,14 +117,29 @@ nav {
     display: flex;
     align-items: center;
     justify-content: center;
-    color: var(--primary);
     transition: all 0.3s ease;
 }
 
+.nav-social a:nth-child(1) {
+    color: #333;
+}
+
+.nav-social a:nth-child(2) {
+    color: #0A66C2;
+}
+
 .nav-social a:hover {
-    background: var(--primary);
-    color: white;
     transform: translateY(-2px);
+}
+
+.nav-social a:nth-child(1):hover {
+    background: #333;
+    color: white;
+}
+
+.nav-social a:nth-child(2):hover {
+    background: #0A66C2;
+    color: white;
 }
 
 .mobile-menu {
@@ -493,6 +509,7 @@ section {
     margin-top: 40px;
 }
 
+
 .social-links a {
     width: 55px;
     height: 55px;
@@ -501,17 +518,33 @@ section {
     display: flex;
     align-items: center;
     justify-content: center;
-    color: var(--primary);
     text-decoration: none;
     transition: all 0.3s ease;
     border: 2px solid var(--border);
 }
 
+.social-links a:nth-child(1) {
+    color: #333;
+}
+
+.social-links a:nth-child(2) {
+    color: #0A66C2;
+}
+
 .social-links a:hover {
-    background: var(--primary);
-    color: white;
     transform: translateY(-3px);
-    border-color: var(--primary);
+}
+
+.social-links a:nth-child(1):hover {
+    background: #333;
+    color: white;
+    border-color: #333;
+}
+
+.social-links a:nth-child(2):hover {
+    background: #0A66C2;
+    color: white;
+    border-color: #0A66C2;
 }
 
 /* Footer */
@@ -636,6 +669,7 @@ footer p {
         padding: 30px;
     }
 }
+
 
 
 
