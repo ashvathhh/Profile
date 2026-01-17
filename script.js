@@ -14,17 +14,23 @@ function type() {
     const current = texts[textIndex];
     const typingElement = document.querySelector('.typing');
     
+    // Make sure the element exists before trying to update it
+    if (!typingElement) return;
+    
     if (!isDeleting) {
-        typingElement.textContent = current.slice(0, charIndex++);
+        typingElement.textContent = current.slice(0, charIndex);
+        charIndex++;
         if (charIndex > current.length) {
             isDeleting = true;
             setTimeout(type, 1500);
             return;
         }
     } else {
-        typingElement.textContent = current.slice(0, charIndex--);
+        typingElement.textContent = current.slice(0, charIndex);
+        charIndex--;
         if (charIndex < 0) {
             isDeleting = false;
+            charIndex = 0;
             textIndex = (textIndex + 1) % texts.length;
         }
     }
@@ -57,8 +63,14 @@ window.addEventListener('scroll', () => {
     }
 });
 
-// Start typing animation when page loads
-window.addEventListener('load', type);
+// Start typing animation when DOM is fully loaded
+document.addEventListener('DOMContentLoaded', () => {
+    const typingElement = document.querySelector('.typing');
+    if (typingElement) {
+        typingElement.textContent = ''; // Clear any initial text
+        type();
+    }
+});
 
 // Smooth scroll for anchor links
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
