@@ -209,11 +209,12 @@ nav {
 }
 
 .hero-text h1 {
-    font-size: 4.5rem;
+    font-size: 3.2rem;
     font-weight: 700;
     line-height: 1.2;
     margin-bottom: 15px;
     animation: fadeInUp 0.8s ease;
+    white-space: nowrap;
 }
 
 .hero .accent {
@@ -620,3 +621,4 @@ footer p {
         padding: 30px;
     }
 }
+
