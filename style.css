@@ -103,11 +103,11 @@ nav {
     width: 100%;
 }
 
+
 .nav-social {
     display: flex;
     gap: 15px;
 }
-
 
 .nav-social a {
     width: 36px;
@@ -120,26 +120,26 @@ nav {
     transition: all 0.3s ease;
 }
 
-.nav-social a:nth-child(1) {
+/* Target GitHub - it's inside the first <li class="nav-social"> */
+li.nav-social:nth-of-type(6) a {
     color: #333;
 }
 
-.nav-social a:nth-child(2) {
-    color: #0A66C2;
-}
-
-.nav-social a:hover {
+li.nav-social:nth-of-type(6) a:hover {
+    background: #333;
+    color: white;
     transform: translateY(-2px);
 }
 
-.nav-social a:nth-child(1):hover {
-    background: #333;
-    color: white;
+/* Target LinkedIn - it's inside the second <li class="nav-social"> */
+li.nav-social:nth-of-type(7) a {
+    color: #0A66C2;
 }
 
-.nav-social a:nth-child(2):hover {
+li.nav-social:nth-of-type(7) a:hover {
     background: #0A66C2;
     color: white;
+    transform: translateY(-2px);
 }
 
 .mobile-menu {
@@ -669,6 +669,7 @@ footer p {
         padding: 30px;
     }
 }
+
 
 
 
