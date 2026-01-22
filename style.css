@@ -51,22 +51,8 @@ nav {
     margin: 0 auto;
     padding: 25px 60px;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
-}
-
-.nav-left {
-    display: flex;
-    align-items: center;
-    gap: 30px;
-}
-
-.location {
-    color: var(--text-light);
-    font-size: 0.95rem;
-    display: flex;
-    align-items: center;
-    gap: 6px;
 }
 
 .nav-links {
@@ -103,7 +89,6 @@ nav {
     width: 100%;
 }
 
-
 .nav-social {
     display: flex;
     gap: 15px;
@@ -121,22 +106,22 @@ nav {
 }
 
 /* Target GitHub - it's inside the first <li class="nav-social"> */
-li.nav-social:nth-of-type(6) a {
+li.nav-social:nth-of-type(5) a {
     color: #333;
 }
 
-li.nav-social:nth-of-type(6) a:hover {
+li.nav-social:nth-of-type(5) a:hover {
     background: #333;
     color: white;
     transform: translateY(-2px);
 }
 
 /* Target LinkedIn - it's inside the second <li class="nav-social"> */
-li.nav-social:nth-of-type(7) a {
+li.nav-social:nth-of-type(6) a {
     color: #0A66C2;
 }
 
-li.nav-social:nth-of-type(7) a:hover {
+li.nav-social:nth-of-type(6) a:hover {
     background: #0A66C2;
     color: white;
     transform: translateY(-2px);
@@ -203,7 +188,6 @@ li.nav-social:nth-of-type(7) a:hover {
     flex-shrink: 0;
 }
 
-
 .hero-image img {
     width: 380px;
     height: 380px;
@@ -232,7 +216,6 @@ li.nav-social:nth-of-type(7) a:hover {
         transform: translateX(0);
     }
 }
-
 
 .hero-text h1 {
     font-size: 3.2rem;
@@ -273,6 +256,11 @@ li.nav-social:nth-of-type(7) a:hover {
     font-size: 1.8rem;
     color: var(--text-light);
     font-weight: 500;
+    opacity: 0;
+}
+
+.hero-text .typing.active {
+    opacity: 1;
 }
 
 .hero-text .typing::after {
@@ -299,6 +287,7 @@ li.nav-social:nth-of-type(7) a:hover {
     gap: 20px;
     flex-wrap: wrap;
     animation: fadeInUp 0.8s ease 0.6s both;
+    justify-content: center;
 }
 
 .btn {
@@ -509,7 +498,6 @@ section {
     margin-top: 40px;
 }
 
-
 .social-links a {
     width: 55px;
     height: 55px;
@@ -564,16 +552,7 @@ footer p {
 @media (max-width: 768px) {
     nav {
         padding: 20px 30px;
-    }
-
-    .nav-left {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 10px;
-    }
-
-    .location {
-        font-size: 0.85rem;
+        justify-content: space-between;
     }
 
     .nav-social {
@@ -691,7 +670,6 @@ footer p {
     background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
     position: relative;
     overflow: hidden;
-    text-align: center;
 }
 
 .about-hero::before {
@@ -704,6 +682,7 @@ footer p {
     background: radial-gradient(circle, rgba(75, 123, 236, 0.25) 0%, transparent 60%);
     animation: float 20s infinite ease-in-out;
 }
+
 .about-hero::after {
     content: '';
     position: absolute;
@@ -763,12 +742,6 @@ footer p {
 .about-hero-image img:hover {
     transform: scale(1.05);
     box-shadow: 0 20px 50px rgba(75, 123, 236, 0.3);
-}
-
-.about-hero .lead {
-    font-size: 1.3rem;
-    color: var(--text-light);
-    animation: fadeInUp 0.8s ease 0.2s both;
 }
 
 /* Detailed About Section */
@@ -961,10 +934,6 @@ footer p {
         padding: 120px 30px 60px;
         min-height: 40vh;
     }
-    
-    .about-hero h1 {
-        font-size: 2.5rem;
-    }
 
     .about-hero-content {
         flex-direction: column;
@@ -981,45 +950,34 @@ footer p {
         width: 200px;
         height: 200px;
     }
-    
-    .about-hero .lead {
-        font-size: 1.1rem;
-    }
-    
+
     .about-detailed {
         padding: 60px 30px;
     }
-    
+
     .about-grid {
         grid-template-columns: 1fr;
         gap: 40px;
     }
-    
+
     .about-main h2 {
         font-size: 1.8rem;
     }
-    
+
     .cta-section {
         padding: 60px 30px;
     }
-    
+
     .cta-content h2 {
         font-size: 2rem;
     }
-    
+
     .cta-buttons {
         flex-direction: column;
         width: 100%;
     }
-    
+
     .cta-buttons .btn {
         width: 100%;
     }
 }
-
-
-
-
-
-
-
