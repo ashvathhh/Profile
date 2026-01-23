@@ -223,6 +223,10 @@ nav {
 
 .hero-image .typing-container {
     height: 50px;
+    min-height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     animation: fadeInUp 0.8s ease 0.4s both;
 }
 
@@ -231,6 +235,7 @@ nav {
     color: var(--text-light);
     font-weight: 500;
     opacity: 0;
+    text-align: center;
 }
 
 .hero-image .typing.active {
@@ -705,6 +710,10 @@ footer p {
 
     .hero-image .typing {
         font-size: 1.3rem;
+    }
+
+    .hero-image .typing-container {
+        min-height: 45px;
     }
 
     .hero-text h1 {
