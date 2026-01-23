@@ -105,23 +105,22 @@ nav {
     transition: all 0.3s ease;
 }
 
-/* Target GitHub - it's inside the first <li class="nav-social"> */
-li.nav-social:nth-of-type(4) a {
+/* Target GitHub and LinkedIn by their position in nav */
+.nav-links li:nth-child(4) a {
     color: #333;
 }
 
-li.nav-social:nth-of-type(4) a:hover {
+.nav-links li:nth-child(4) a:hover {
     background: #333;
     color: white;
     transform: translateY(-2px);
 }
 
-/* Target LinkedIn - it's inside the second <li class="nav-social"> */
-li.nav-social:nth-of-type(5) a {
+.nav-links li:nth-child(5) a {
     color: #0A66C2;
 }
 
-li.nav-social:nth-of-type(5) a:hover {
+.nav-links li:nth-child(5) a:hover {
     background: #0A66C2;
     color: white;
     transform: translateY(-2px);
@@ -481,6 +480,10 @@ section {
 /* Contact Section */
 #contact {
     background: var(--bg-secondary);
+    text-align: center;
+}
+
+.contact-content {
     text-align: center;
 }
 
