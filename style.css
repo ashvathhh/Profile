@@ -336,10 +336,6 @@ nav {
 /* Sections */
 section {
     padding: 120px 60px;
-    width: 100%;
-}
-
-.container {
     max-width: 1400px;
     margin: 0 auto;
 }
@@ -350,9 +346,7 @@ section {
     text-align: center;
     margin-bottom: 80px;
     position: relative;
-    display: inline-block;
-    left: 50%;
-    transform: translateX(-50%);
+    width: 100%;
 }
 
 .section-title::after {
@@ -987,4 +981,16 @@ footer p {
     .cta-buttons .btn {
         width: 100%;
     }
+}
+
+/* Contact Section Title Fix */
+#contact .section-title {
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+#contact .section-title::after {
+    left: 50%;
+    transform: translateX(-50%);
 }
