@@ -13,7 +13,7 @@
         <nav>
             <ul class="nav-links" id="navLinks">
                 <li><a href="#home">Home</a></li>
-                <li><a href="#projects">Projects</a></li>
+                <li><a href="projects.html">Projects</a></li>
                 <li><a href="about.html">About</a></li>
                 <li class="nav-social">
                     <a href="https://github.com/ashvathhh" target="_blank" title="GitHub">
@@ -49,7 +49,7 @@
                     computer vision, and human-centered AI systems that make a real-world impact.
                 </p>
                 <div class="btn-group">
-                    <a href="#projects" class="btn btn-primary">View Projects</a>
+                    <a href="projects.html" class="btn btn-primary">View Projects</a>
                 </div>
             </div>
             <div class="hero-image">
@@ -63,14 +63,15 @@
 
     <!-- Projects Section -->
     <section id="projects">
-        <h2 class="section-title">Featured Projects</h2>
-        <div class="projects-grid">
+        <h2 class="section-title">Featured Project</h2>
+        <div class="projects-grid" style="grid-template-columns: 1fr; max-width: 800px; margin: 0 auto;">
             <div class="project-card">
                 <div class="project-content">
                     <h3>Human Detection in Emergency Scenarios</h3>
                     <p>
                         YOLOv8-based human detection system integrated with a Flutter app
                         to identify trapped individuals in low-visibility fire environments.
+                        Achieved 92% mean Average Precision with 6-8ms inference speed.
                     </p>
                     <div class="project-tags">
                         <span class="tag">YOLOv8</span>
@@ -84,42 +85,9 @@
                     </a>
                 </div>
             </div>
-
-            <div class="project-card">
-                <div class="project-content">
-                    <h3>Smart Resume Analyzer</h3>
-                    <p>
-                        NLP-based resume analysis system using transformer models
-                        to predict job-role compatibility and provide insights.
-                    </p>
-                    <div class="project-tags">
-                        <span class="tag">NLP</span>
-                        <span class="tag">Transformers</span>
-                        <span class="tag">Machine Learning</span>
-                    </div>
-                    <a href="#" class="project-link">
-                       Coming Soon →
-                    </a>
-                </div>
-            </div>
-
-            <div class="project-card">
-                <div class="project-content">
-                    <h3>Modern Portfolio Website</h3>
-                    <p>
-                        Responsive multi-page portfolio built with modern web technologies,
-                        featuring smooth animations and an intuitive user interface.
-                    </p>
-                    <div class="project-tags">
-                        <span class="tag">HTML</span>
-                        <span class="tag">CSS</span>
-                        <span class="tag">JavaScript</span>
-                    </div>
-                    <a href="#" class="project-link">
-                       View Code →
-                    </a>
-                </div>
-            </div>
+        </div>
+        <div style="text-align: center; margin-top: 40px;">
+            <a href="projects.html" class="btn btn-secondary" style="display: inline-block;">View All Projects →</a>
         </div>
     </section>
 
