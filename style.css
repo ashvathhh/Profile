@@ -776,6 +776,54 @@ footer p {
     width: 100%;
 }
 
+/* Projects Hero Section */
+.projects-hero {
+    min-height: 40vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 180px 60px 80px;
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+}
+
+.projects-hero::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -50%;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, rgba(71, 85, 105, 0.15) 0%, transparent 70%);
+    animation: float 20s infinite ease-in-out;
+}
+
+.projects-hero-content {
+    position: relative;
+    z-index: 1;
+}
+
+.projects-hero h1 {
+    font-size: 4rem;
+    font-weight: 700;
+    margin-bottom: 15px;
+    animation: fadeInUp 0.8s ease;
+}
+
+.projects-hero p {
+    font-size: 1.2rem;
+    color: var(--text-light);
+    animation: fadeInUp 0.8s ease 0.2s both;
+}
+
+/* All Projects Section */
+.all-projects {
+    padding: 80px 60px 120px;
+    background: white;
+}
+
 /* About Hero Section */
 .about-hero {
     min-height: 50vh;
