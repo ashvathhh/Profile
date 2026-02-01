@@ -79,28 +79,23 @@
 
         .project-section ul {
             list-style: none;
-            padding: 0;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
+            padding: 25px;
+            background: var(--bg-secondary);
+            border-radius: 8px;
+            border: 1px solid var(--border);
         }
 
         .project-section ul li {
             font-size: 1.05rem;
             color: var(--text-light);
             line-height: 1.8;
-            margin-bottom: 0;
-            padding: 20px;
+            margin-bottom: 15px;
+            padding-left: 0;
             position: relative;
-            background: var(--bg-secondary);
-            border-radius: 8px;
-            border: 1px solid var(--border);
-            transition: all 0.3s ease;
         }
 
-        .project-section ul li:hover {
-            box-shadow: 0 4px 15px rgba(71, 85, 105, 0.15);
-            transform: translateY(-3px);
+        .project-section ul li:last-child {
+            margin-bottom: 0;
         }
 
         .project-section ul li::before {
@@ -149,18 +144,6 @@
         .metric-label {
             font-size: 0.8rem;
             color: var(--text-light);
-        }
-
-        .code-highlight {
-            background: var(--bg-secondary);
-            padding: 20px;
-            border-radius: 8px;
-            border-left: 4px solid var(--primary);
-            margin: 20px 0;
-        }
-
-        .code-highlight strong {
-            color: var(--primary);
         }
 
         /* Flowchart styles */
@@ -331,75 +314,38 @@
             </p>
         </div>
 
-        <!-- Technical Architecture -->
-        <div class="project-section">
-            <h2>Technical Architecture</h2>
-            
-            <div class="code-highlight">
-                <strong>Hybrid Data Source Strategy:</strong>
-                <p style="margin-top: 10px; color: var(--text-light);">
-                    Implements intelligent fallback mechanism that queries OpenStreetMap first for up-to-date data, then falls back 
-                    to Microsoft Buildings dataset (11M+ footprints) when OSM data is unavailable. This ensures maximum coverage while 
-                    maintaining data freshness.
-                </p>
-            </div>
-
-            <ul>
-                <li><strong>Streaming Architecture:</strong> Uses ijson for incremental JSON parsing, loading only relevant buildings into memory instead of entire 11M+ dataset, reducing memory footprint from ~20GB to ~500MB</li>
-                <li><strong>Spatial Indexing:</strong> R-tree index implementation enables efficient nearest-neighbor queries, reducing search time from O(n) to O(log n) across millions of footprints</li>
-                <li><strong>Geometric Edge Analysis:</strong> Analyzes building polygon edges to compute outward normal vectors, determining which edge faces the street based on perpendicular alignment</li>
-                <li><strong>Adaptive Radius Search:</strong> Dynamically adjusts search radius (100m, 200m) based on data density, optimizing for both urban and suburban areas</li>
-                <li><strong>Performance Caching:</strong> 24-hour TTL cache with session pooling and connection reuse reduces redundant API calls and processing by 80%</li>
-            </ul>
-        </div>
-
         <!-- Core Algorithm -->
         <div class="project-section">
             <h2>Core Algorithm</h2>
-            <p>
-                The orientation detection algorithm combines multiple geometric and spatial analysis techniques:
-            </p>
-            
-            <div class="code-highlight">
-                <strong>Step 1: Address Geocoding</strong>
-                <p style="margin-top: 10px; color: var(--text-light);">
-                    Uses Google Maps Geocoding API with connection pooling, retry logic, and 5-second timeouts to convert addresses 
-                    to precise latitude/longitude coordinates.
-                </p>
-            </div>
-
-            <div class="code-highlight">
-                <strong>Step 2: Building Footprint Retrieval</strong>
-                <p style="margin-top: 10px; color: var(--text-light);">
-                    Streams through state-specific GeoJSON files (California.geojson, Texas.geojson) using ijson. Performs bounding 
-                    box filtering before geometric calculations to eliminate 99% of irrelevant buildings instantly.
-                </p>
-            </div>
-
-            <div class="code-highlight">
-                <strong>Step 3: Street Network Analysis</strong>
-                <p style="margin-top: 10px; color: var(--text-light);">
-                    Queries Overpass API for street data with weighted prioritization (residential=5, primary=2, motorway=0). 
-                    Implements street name extraction and normalization to match address strings against OSM street names.
-                </p>
-            </div>
-
-            <div class="code-highlight">
-                <strong>Step 4: Orientation Calculation</strong>
-                <p style="margin-top: 10px; color: var(--text-light);">
-                    For each building edge: (1) Calculates perpendicular normal vectors, (2) Determines outward-facing direction 
-                    using center-to-edge bearing, (3) Scores alignment with nearest street bearing, (4) Selects best candidate edge 
-                    with minimal alignment error.
-                </p>
-            </div>
-
-            <div class="code-highlight">
-                <strong>Step 5: Ambiguity Resolution</strong>
-                <p style="margin-top: 10px; color: var(--text-light);">
-                    For corner lots where multiple streets create 180° ambiguity, the system extracts street name from input address, 
-                    matches it against nearby streets, and prioritizes the matched street's orientation if angle difference exceeds 150° 
-                    and distance is under 80m.
-                </p>
+            <div class="flowchart">
+                <div class="flowchart-step">
+                    <span class="step-number">1</span>
+                    <span class="step-content">Geocode address to latitude/longitude coordinates using Google Maps API</span>
+                </div>
+                <div class="flowchart-step">
+                    <span class="step-number">2</span>
+                    <span class="step-content">Stream through state GeoJSON files, filter buildings using bounding box</span>
+                </div>
+                <div class="flowchart-step">
+                    <span class="step-number">3</span>
+                    <span class="step-content">Query Overpass API for nearby streets with weighted road classification</span>
+                </div>
+                <div class="flowchart-step">
+                    <span class="step-number">4</span>
+                    <span class="step-content">Extract and match street name from address against OSM street data</span>
+                </div>
+                <div class="flowchart-step">
+                    <span class="step-number">5</span>
+                    <span class="step-content">Analyze building edges, calculate perpendicular normal vectors</span>
+                </div>
+                <div class="flowchart-step">
+                    <span class="step-number">6</span>
+                    <span class="step-content">Select outward-facing edge aligned with matched street bearing</span>
+                </div>
+                <div class="flowchart-step">
+                    <span class="step-number">7</span>
+                    <span class="step-content">Return orientation angle (0-360°) as building front direction</span>
+                </div>
             </div>
         </div>
 
@@ -413,55 +359,18 @@
                 <span class="tech-item">ijson (Streaming)</span>
                 <span class="tech-item">Google Maps API</span>
                 <span class="tech-item">Overpass API</span>
-                <span class="tech-item">Requests (Session Pooling)</span>
                 <span class="tech-item">NumPy</span>
-                <span class="tech-item">Matplotlib</span>
-                <span class="tech-item">urllib3 (Retry Logic)</span>
             </div>
         </div>
 
-        <!-- Technical Implementation Details -->
+        <!-- Technical Implementation -->
         <div class="project-section">
             <h2>Technical Implementation</h2>
             <ul>
-                <li><strong>Streaming JSON Parser:</strong> ijson processes multi-GB GeoJSON files incrementally, checking 200,000 buildings per progress update without loading entire dataset</li>
-                <li><strong>Bounding Box Pre-filter:</strong> Fast coordinate range checks (min/max lon/lat) eliminate 99%+ of irrelevant buildings before expensive Shapely operations</li>
-                <li><strong>Bearing Calculation:</strong> Haversine-based bearing computation between geographic coordinates using atan2 for accurate azimuth angles (0-360°)</li>
-                <li><strong>Normal Vector Selection:</strong> Computes perpendicular vectors to building edges, selects outward-facing normal by comparing with center-to-edge bearing</li>
-                <li><strong>Street Name Matching:</strong> Regex-based extraction and normalization handles variations (St/Street, Dr/Drive) with suffix removal for fuzzy matching</li>
-                <li><strong>HTTP Session Pooling:</strong> Singleton session with connection pooling (max 20 connections) and exponential backoff retry (3 attempts) reduces API latency by 40%</li>
-                <li><strong>Multi-tier Caching:</strong> In-memory cache with 24-hour TTL for geocoding, Overpass queries, and final orientations prevents redundant processing</li>
-            </ul>
-        </div>
-
-        <!-- Algorithm Workflow -->
-        <div class="project-section">
-            <h2>Algorithm Workflow</h2>
-            <ul>
-                <li>Input address is geocoded to (lat, lon) coordinates using Google Maps API</li>
-                <li>System determines state (CA or TX) from coordinates and selects appropriate GeoJSON file</li>
-                <li>Streams through building footprints using ijson, performing bounding box filtering</li>
-                <li>Calculates distance from search point to each building using Shapely geometric operations</li>
-                <li>Selects nearest building within search radius (100m default, adaptive up to 200m)</li>
-                <li>Queries Overpass API for nearby streets with weighted road type classification</li>
-                <li>Extracts street name from address and matches against OSM street names</li>
-                <li>Analyzes all building edges: calculates perpendicular normals and alignment scores</li>
-                <li>Selects edge with best alignment to matched street (or closest street if no match)</li>
-                <li>Returns outward-facing normal as building front orientation (0-360°)</li>
-            </ul>
-        </div>
-
-        <!-- Challenges & Solutions -->
-        <div class="project-section">
-            <h2>Challenges & Solutions</h2>
-            <ul>
-                <li><strong>Memory Constraints with 11M+ Records:</strong> Implemented ijson streaming parser that processes buildings incrementally, reducing peak memory from 20GB to 500MB while maintaining full dataset access</li>
-                <li><strong>Query Performance Bottleneck:</strong> Built R-tree spatial index with bounding box pre-filtering, achieving sub-second queries on 11M records (99.9% reduction from linear search)</li>
-                <li><strong>Corner Lot Ambiguity:</strong> Developed street name matching algorithm with regex extraction and normalization that resolves 180° ambiguity by identifying the actual street address</li>
-                <li><strong>API Rate Limits & Timeouts:</strong> Implemented exponential backoff retry strategy, connection pooling (20 concurrent), and 24-hour caching reducing API calls by 80%</li>
-                <li><strong>Missing Building Data:</strong> Created hybrid fallback system: OSM (fresh data) → Microsoft Buildings (coverage) → Smart street-based estimation (last resort)</li>
-                <li><strong>Inward vs Outward Normal Selection:</strong> Fixed geometric bug by computing center-to-edge bearing and selecting perpendicular normal with minimal angular difference</li>
-                <li><strong>State Detection Accuracy:</strong> Implemented precise coordinate-based state classification using geographic bounding boxes for California and Texas</li>
+                <li><strong>Streaming JSON Parser:</strong> ijson processes multi-GB GeoJSON files incrementally without loading entire dataset into memory</li>
+                <li><strong>Spatial Indexing:</strong> R-tree index implementation enables efficient nearest-neighbor queries across millions of footprints</li>
+                <li><strong>Geometric Edge Analysis:</strong> Computes perpendicular normal vectors to building edges and selects outward-facing direction</li>
+                <li><strong>Street Name Matching:</strong> Regex-based extraction and normalization handles address variations for accurate matching</li>
             </ul>
         </div>
 
@@ -469,12 +378,20 @@
         <div class="project-section">
             <h2>Key Features</h2>
             <ul>
-                <li><strong>Hybrid Data Sources:</strong> Combines OpenStreetMap (real-time) and Microsoft Buildings (11M footprints) for maximum coverage and data freshness</li>
-                <li><strong>Intelligent Fallback:</strong> Three-tier fallback strategy ensures results even in data-sparse areas: building analysis → street-based estimation → confidence scoring</li>
-                <li><strong>Address Autocomplete:</strong> Google Places API integration provides autocomplete suggestions for improved user experience</li>
-                <li><strong>Performance Monitoring:</strong> Built-in timing metrics and progress logging for requests exceeding 2-second threshold</li>
-                <li><strong>Edge Case Handling:</strong> Special handling for complex scenarios like 20 Callery Ct with custom orientation adjustments</li>
-                <li><strong>Scalable Architecture:</strong> Connection pooling, streaming I/O, and adaptive algorithms support production deployment</li>
+                <li><strong>Hybrid Data Sources:</strong> Combines OpenStreetMap and Microsoft Buildings dataset for maximum coverage</li>
+                <li><strong>Intelligent Fallback:</strong> Three-tier strategy ensures results even in data-sparse areas</li>
+                <li><strong>Performance Caching:</strong> 24-hour TTL cache with session pooling reduces API calls by 80%</li>
+                <li><strong>Scalable Architecture:</strong> Connection pooling and streaming I/O support production deployment</li>
+            </ul>
+        </div>
+
+        <!-- Challenges & Solutions -->
+        <div class="project-section">
+            <h2>Challenges & Solutions</h2>
+            <ul>
+                <li><strong>Memory Constraints:</strong> Implemented streaming parser reducing peak memory from 20GB to 500MB</li>
+                <li><strong>Query Performance:</strong> Built spatial index achieving sub-second queries on 11M records</li>
+                <li><strong>Corner Lot Ambiguity:</strong> Developed street name matching resolving 180° orientation conflicts</li>
             </ul>
         </div>
 
@@ -489,12 +406,7 @@
             <p>
                 Sub-second query times ensure real-time responsiveness for address-to-orientation lookups, making the system suitable 
                 for production applications. The intelligent street name matching resolves corner lot ambiguities with high accuracy, 
-                while the hybrid data source approach maintains 95%+ coverage even in areas with incomplete OpenStreetMap data.
-            </p>
-            <p>
-                Applications include solar panel installation planning, real estate visualization, smart city infrastructure, and 
-                property assessment automation. The system's ability to determine building orientation at scale enables data-driven 
-                decisions for energy efficiency, urban planning, and geographic analytics.
+                while the hybrid data source approach maintains 95% coverage even in areas with incomplete OpenStreetMap data.
             </p>
         </div>
     </div>
