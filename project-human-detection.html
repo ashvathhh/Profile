@@ -79,7 +79,10 @@
 
         .project-section ul {
             list-style: none;
-            padding: 0;
+            padding: 25px;
+            background: var(--bg-secondary);
+            border-radius: 8px;
+            border: 1px solid var(--border);
         }
 
         .project-section ul li {
@@ -87,16 +90,16 @@
             color: var(--text-light);
             line-height: 1.8;
             margin-bottom: 15px;
-            padding-left: 25px;
+            padding-left: 0;
             position: relative;
         }
 
+        .project-section ul li:last-child {
+            margin-bottom: 0;
+        }
+
         .project-section ul li::before {
-            content: '→';
-            position: absolute;
-            left: 0;
-            color: var(--primary);
-            font-weight: bold;
+            content: none;
         }
 
         .tech-stack {
@@ -143,6 +146,63 @@
             color: var(--text-light);
         }
 
+        /* Flowchart styles */
+        .flowchart {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin: 30px 0;
+            max-width: 800px;
+        }
+
+        .flowchart-step {
+            background: var(--bg-secondary);
+            padding: 20px 25px;
+            border-radius: 8px;
+            border-left: 4px solid var(--primary);
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .flowchart-step:hover {
+            box-shadow: 0 4px 15px rgba(71, 85, 105, 0.15);
+            transform: translateX(5px);
+        }
+
+        .flowchart-step::after {
+            content: '↓';
+            position: absolute;
+            bottom: -25px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 1.5rem;
+            color: var(--primary);
+        }
+
+        .flowchart-step:last-child::after {
+            content: none;
+        }
+
+        .step-number {
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 30px;
+            font-weight: 700;
+            margin-right: 15px;
+            font-size: 0.9rem;
+        }
+
+        .step-content {
+            display: inline;
+            color: var(--text-light);
+            font-size: 1.05rem;
+        }
+
         @media (max-width: 768px) {
             .project-detail {
                 padding: 100px 30px 60px;
@@ -155,6 +215,10 @@
             .project-meta {
                 flex-direction: column;
                 gap: 15px;
+            }
+
+            .flowchart {
+                max-width: 100%;
             }
         }
     </style>
@@ -205,7 +269,7 @@
             </div>
 
             <div class="project-links">
-                <a href="https://github.com/ashvathhh/Intelligent-emergency-Fire-Detection-System-Simulation-" class="btn btn-primary" target="_blank">View on GitHub</a>
+                <a href="https://github.com/ashvathhh/Intelligent-emergency-Fire-Detection-System-Simulation-" class="btn btn-primary" target="_blank">View GitHub Repository</a>
                 <a href="projects.html" class="btn btn-secondary">Back to Projects</a>
             </div>
         </div>
@@ -228,38 +292,55 @@
                 </div>
                 <div class="metric-card">
                     <div class="metric-value">92%</div>
-                    <div class="metric-label">Mean Average Precision</div>
+                    <div class="metric-label">Overall Accuracy</div>
                 </div>
             </div>
         </div>
 
-        <!-- Overview -->
+        <!-- Project Overview -->
         <div class="project-section">
-            <h2>Overview</h2>
+            <h2>Project Overview</h2>
             <p>
-                Fine-tuned YOLOv8 deep learning model on custom thermal imaging dataset achieving 89.6% mAP50 and 86.7% 
-                precision for human detection in low-visibility fire evacuation scenarios. The system is designed to identify 
-                trapped individuals in smoke-filled environments where traditional camera systems fail.
+                Developed an intelligent human detection system using YOLOv8 deep learning model specifically designed for emergency 
+                fire evacuation scenarios. The system processes thermal imaging data to detect trapped individuals in low-visibility, 
+                smoke-filled environments where traditional camera systems fail.
             </p>
             <p>
-                Developed a Flutter mobile application with integrated video processing pipeline and YOLOv8 inference engine 
-                for post-incident rescue analysis. The application enables first responders to quickly analyze thermal footage 
-                and locate individuals in emergency situations.
+                Fine-tuned YOLOv8 on a custom thermal imaging dataset achieving 89.6% mAP50 and 86.7% precision. Developed a 
+                cross-platform Flutter mobile application with integrated video processing pipeline and YOLOv8 inference engine, 
+                enabling first responders to analyze thermal footage for post-incident rescue operations with 6-8ms inference speed.
             </p>
         </div>
 
-        <!-- Technical Implementation -->
+        <!-- Core Algorithm -->
         <div class="project-section">
-            <h2>Technical Implementation</h2>
-            <ul>
-                <li>Fine-tuned YOLOv8 model on custom thermal imaging dataset with data augmentation</li>
-                <li>Achieved 6-8ms inference speed per frame for near real-time detection capabilities</li>
-                <li>Developed Flutter mobile application for cross-platform deployment (iOS/Android)</li>
-                <li>Implemented video processing pipeline for frame extraction and analysis</li>
-                <li>Integrated TensorFlow Lite for on-device model inference</li>
-                <li>Optimized model for mobile deployment with quantization techniques</li>
-                <li>Created custom dataset annotation pipeline for thermal imaging data</li>
-            </ul>
+            <h2>Core Algorithm</h2>
+            <div class="flowchart">
+                <div class="flowchart-step">
+                    <span class="step-number">1</span>
+                    <span class="step-content">Upload thermal video through Flutter mobile application interface</span>
+                </div>
+                <div class="flowchart-step">
+                    <span class="step-number">2</span>
+                    <span class="step-content">Segment video into individual frames and resize to 640x640 pixels</span>
+                </div>
+                <div class="flowchart-step">
+                    <span class="step-number">3</span>
+                    <span class="step-content">Process frames through YOLOv8 model with CSPDarknet53 backbone</span>
+                </div>
+                <div class="flowchart-step">
+                    <span class="step-number">4</span>
+                    <span class="step-content">Apply Non-Maximum Suppression to filter redundant detections</span>
+                </div>
+                <div class="flowchart-step">
+                    <span class="step-number">5</span>
+                    <span class="step-content">Generate bounding boxes with class labels and confidence scores</span>
+                </div>
+                <div class="flowchart-step">
+                    <span class="step-number">6</span>
+                    <span class="step-content">Display results with annotated frames showing detected individuals</span>
+                </div>
+            </div>
         </div>
 
         <!-- Technologies Used -->
@@ -270,11 +351,32 @@
                 <span class="tech-item">Flutter</span>
                 <span class="tech-item">Python</span>
                 <span class="tech-item">TensorFlow Lite</span>
-                <span class="tech-item">Computer Vision</span>
-                <span class="tech-item">Thermal Imaging</span>
                 <span class="tech-item">OpenCV</span>
                 <span class="tech-item">Dart</span>
+                <span class="tech-item">Thermal Imaging</span>
             </div>
+        </div>
+
+        <!-- Technical Implementation -->
+        <div class="project-section">
+            <h2>Technical Implementation</h2>
+            <ul>
+                <li><strong>YOLOv8 Fine-tuning:</strong> Trained on custom thermal imaging dataset with data augmentation achieving 89.6% mAP50</li>
+                <li><strong>Mobile Optimization:</strong> TensorFlow Lite quantization for 6-8ms inference speed on mobile devices</li>
+                <li><strong>Video Processing Pipeline:</strong> Frame extraction and resizing to 640x640 for optimal model performance</li>
+                <li><strong>Cross-platform Deployment:</strong> Flutter framework ensuring consistent experience across iOS and Android</li>
+            </ul>
+        </div>
+
+        <!-- Key Features -->
+        <div class="project-section">
+            <h2>Key Features</h2>
+            <ul>
+                <li><strong>Thermal Imaging Support:</strong> Optimized for low-visibility smoke-filled environments using heat signatures</li>
+                <li><strong>Real-time Processing:</strong> 6-8ms inference enables near real-time detection on mobile hardware</li>
+                <li><strong>Offline Capability:</strong> TFLite model runs entirely on-device without internet connection</li>
+                <li><strong>Emergency Response Focus:</strong> Designed specifically for post-incident rescue analysis scenarios</li>
+            </ul>
         </div>
 
         <!-- Challenges & Solutions -->
@@ -282,10 +384,8 @@
             <h2>Challenges & Solutions</h2>
             <ul>
                 <li><strong>Low Visibility Detection:</strong> Trained model specifically on thermal imaging data to detect heat signatures in smoke-filled environments</li>
-                <li><strong>Mobile Performance:</strong> Optimized model using TensorFlow Lite quantization to achieve 6-8ms inference on mobile devices</li>
-                <li><strong>Dataset Limitations:</strong> Created custom thermal imaging dataset with diverse fire scenarios and human positions</li>
-                <li><strong>Real-time Processing:</strong> Implemented efficient video processing pipeline to handle frame extraction and analysis</li>
-                <li><strong>Cross-platform Deployment:</strong> Used Flutter framework to ensure consistent experience across iOS and Android</li>
+                <li><strong>Mobile Performance:</strong> Optimized using TensorFlow Lite quantization achieving 6-8ms inference on resource-constrained devices</li>
+                <li><strong>Dataset Limitations:</strong> Created custom thermal imaging dataset with diverse fire scenarios and human positions for robust training</li>
             </ul>
         </div>
 
