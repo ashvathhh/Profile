@@ -46,7 +46,7 @@
 
         .skill-category {
             background: #f8f9fa;
-            padding: 30px;
+            padding: 25px;
             border-radius: 12px;
             border: 1px solid var(--border);
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
@@ -79,11 +79,11 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 18px;
+            margin-bottom: 15px;
         }
 
         .skill-header h3 {
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             color: var(--text);
             margin: 0;
             transition: all 0.3s ease;
@@ -94,18 +94,18 @@
         }
 
         .skill-percentage {
-            font-size: 1.15rem;
+            font-size: 1.05rem;
             font-weight: 700;
             color: var(--primary);
         }
 
         .skill-bar-container {
             width: 100%;
-            height: 8px;
+            height: 6px;
             background: #e5e7eb;
             border-radius: 10px;
             overflow: hidden;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
         }
 
         .skill-bar {
@@ -250,10 +250,25 @@
                         </ul>
                     </div>
                     
-                    <!-- Resume Download Button -->
-                    <a href="Ashvath_Resume.pdf" class="btn btn-primary" download="Ashvath_Resume.pdf" style="display: block; text-align: center; text-decoration: none;">
-                         My Resume
-                    </a>
+                    <!-- Resume Buttons -->
+                    <div style="display: flex; gap: 10px;">
+                        <a href="Ashvath_Resume.pdf" target="_blank" class="btn btn-primary" style="display: flex; align-items: center; justify-content: center; gap: 8px; text-decoration: none; flex: 1;">
+                            <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                                <polyline points="15 3 21 3 21 9"></polyline>
+                                <line x1="10" y1="14" x2="21" y2="3"></line>
+                            </svg>
+                            View
+                        </a>
+                        <a href="Ashvath_Resume.pdf" download="Ashvath_Resume.pdf" class="btn btn-primary" style="display: flex; align-items: center; justify-content: center; gap: 8px; text-decoration: none; flex: 1;">
+                            <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                <polyline points="7 10 12 15 17 10"></polyline>
+                                <line x1="12" y1="15" x2="12" y2="3"></line>
+                            </svg>
+                            Download
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
