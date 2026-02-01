@@ -6,6 +6,126 @@
     <title>About Me | Ashvath Cheppalli</title>
     <meta name="description" content="Learn more about Ashvath Cheppalli - AI & Machine Learning Developer">
     <link rel="stylesheet" href="style.css">
+    <style>
+        .skills-section {
+            padding: 80px 60px;
+            background: white;
+        }
+
+        .skills-section .section-title {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 60px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .skills-section .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 0;
+            width: 80px;
+            height: 5px;
+            background: var(--primary);
+            border-radius: 2px;
+        }
+
+        .skills-grid-section {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 40px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .skill-category {
+            background: #f8f9fa;
+            padding: 35px;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            transition: all 0.3s ease;
+        }
+
+        .skill-category:hover {
+            box-shadow: 0 8px 25px rgba(71, 85, 105, 0.15);
+            transform: translateY(-5px);
+        }
+
+        .skill-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .skill-header h3 {
+            font-size: 1.4rem;
+            color: var(--text);
+            margin: 0;
+        }
+
+        .skill-percentage {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .skill-bar-container {
+            width: 100%;
+            height: 8px;
+            background: #e5e7eb;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 20px;
+        }
+
+        .skill-bar {
+            height: 100%;
+            background: var(--primary);
+            border-radius: 10px;
+            transition: width 1s ease;
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .skill-tag {
+            padding: 8px 16px;
+            background: white;
+            color: var(--primary);
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            border: 1px solid #e5e7eb;
+            transition: all 0.3s ease;
+        }
+
+        .skill-tag:hover {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 768px) {
+            .skills-grid-section {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .skills-section {
+                padding: 60px 30px;
+            }
+
+            .skills-section .section-title {
+                font-size: 2.2rem;
+            }
+        }
+    </style>
 </head>
 <body>
     <!-- Navigation -->
@@ -73,42 +193,6 @@
                         my deep learning background to develop innovative solutions that combine technical excellence with meaningful 
                         real-world impact. 
                     </p>
-
-                    <h2 style="margin-top: 50px;">My Journey</h2>
-                    <p>
-                        With over 4 years of experience in AI and Machine Learning, I've had the opportunity to work
-                        on diverse projects ranging from emergency response systems to intelligent analytics platforms.
-                        My journey in technology began with a curiosity about how machines can learn and adapt,
-                        which has evolved into a full-fledged passion for creating AI solutions that have real-world impact.
-                    </p>
-
-                    <h2 style="margin-top: 50px;">What I Do</h2>
-                    <ul class="expertise-list">
-                        <li>
-                            <strong>Machine Learning & AI:</strong> Developing intelligent systems using state-of-the-art
-                            algorithms and frameworks including TensorFlow, PyTorch, and scikit-learn.
-                        </li>
-                        <li>
-                            <strong>Computer Vision:</strong> Building vision-based applications for object detection,
-                            image classification, and real-time video analysis using YOLO, OpenCV, and deep learning models.
-                        </li>
-                        <li>
-                            <strong>Mobile Development:</strong> Creating cross-platform mobile applications with Flutter,
-                            integrating AI capabilities for enhanced user experiences.
-                        </li>
-                        <li>
-                            <strong>Web Development:</strong> Designing and implementing responsive web applications
-                            with modern frameworks and best practices.
-                        </li>
-                    </ul>
-
-                    <h2 style="margin-top: 50px;">Beyond Code</h2>
-                    <p>
-                        When I'm not coding, I enjoy staying updated with the latest developments in AI research,
-                        contributing to open-source projects, and exploring how emerging technologies can solve
-                        real-world challenges. I'm particularly interested in applications of AI in healthcare,
-                        emergency response, and accessibility.
-                    </p>
                 </div>
 
                 <div class="about-sidebar">
@@ -156,23 +240,90 @@
                             <span class="tech-tag">JavaScript</span>
                         </div>
                     </div>
-
-                    <div class="info-card">
-                        <h3>Interests</h3>
-                        <ul class="interests-list">
-                            <li>Machine Learning</li>
-                            <li>Computer Vision</li>
-                            <li>Emergency Response Tech</li>
-                            <li>Mobile Development</li>
-                            <li>Web Technologies</li>
-                        </ul>
-                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-  
+    <!-- Skills & Technologies Section -->
+    <section class="skills-section">
+        <h2 class="section-title">Skills & Technologies</h2>
+        <div class="skills-grid-section">
+            <!-- Programming Languages -->
+            <div class="skill-category">
+                <div class="skill-header">
+                    <h3>Programming Languages</h3>
+                    <span class="skill-percentage">85%</span>
+                </div>
+                <div class="skill-bar-container">
+                    <div class="skill-bar" style="width: 85%;"></div>
+                </div>
+                <div class="skill-tags">
+                    <span class="skill-tag">Python</span>
+                    <span class="skill-tag">JavaScript</span>
+                    <span class="skill-tag">R</span>
+                    <span class="skill-tag">HTML</span>
+                    <span class="skill-tag">CSS</span>
+                    <span class="skill-tag">SQL</span>
+                </div>
+            </div>
+
+            <!-- AI/ML & Deep Learning -->
+            <div class="skill-category">
+                <div class="skill-header">
+                    <h3>AI/ML & Deep Learning</h3>
+                    <span class="skill-percentage">88%</span>
+                </div>
+                <div class="skill-bar-container">
+                    <div class="skill-bar" style="width: 88%;"></div>
+                </div>
+                <div class="skill-tags">
+                    <span class="skill-tag">Machine Learning</span>
+                    <span class="skill-tag">Deep Learning</span>
+                    <span class="skill-tag">NLP</span>
+                    <span class="skill-tag">Computer Vision</span>
+                    <span class="skill-tag">Reinforcement Learning</span>
+                </div>
+            </div>
+
+            <!-- Libraries & Frameworks -->
+            <div class="skill-category">
+                <div class="skill-header">
+                    <h3>Libraries & Frameworks</h3>
+                    <span class="skill-percentage">82%</span>
+                </div>
+                <div class="skill-bar-container">
+                    <div class="skill-bar" style="width: 82%;"></div>
+                </div>
+                <div class="skill-tags">
+                    <span class="skill-tag">PyTorch</span>
+                    <span class="skill-tag">TensorFlow</span>
+                    <span class="skill-tag">Keras</span>
+                    <span class="skill-tag">Pandas</span>
+                    <span class="skill-tag">scikit-learn</span>
+                    <span class="skill-tag">Shapely</span>
+                </div>
+            </div>
+
+            <!-- Specialized Tools & Technologies -->
+            <div class="skill-category">
+                <div class="skill-header">
+                    <h3>Specialized Tools</h3>
+                    <span class="skill-percentage">80%</span>
+                </div>
+                <div class="skill-bar-container">
+                    <div class="skill-bar" style="width: 80%;"></div>
+                </div>
+                <div class="skill-tags">
+                    <span class="skill-tag">YOLOv8</span>
+                    <span class="skill-tag">Flutter</span>
+                    <span class="skill-tag">MySQL</span>
+                    <span class="skill-tag">Generative AI</span>
+                    <span class="skill-tag">Prompt Engineering</span>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <!-- Footer -->
     <footer>
@@ -182,7 +333,3 @@
     <script src="script.js"></script>
 </body>
 </html>
-
-
-
-
