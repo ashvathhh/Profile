@@ -182,6 +182,7 @@
             position: relative;
             display: inline-block;
             text-align: left;
+            grid-column: 1 / -1;
         }
 
         .education-section .section-title::after {
@@ -301,6 +302,139 @@
             border-color: var(--primary);
             transform: translateY(-2px);
         }
+
+        /* Profile Card Styles */
+        .profile-card {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        .profile-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 0;
+            background: var(--primary);
+            transition: height 0.3s ease;
+        }
+
+        .profile-card:hover {
+            box-shadow: 0 8px 25px rgba(71, 85, 105, 0.15);
+            transform: translateX(5px);
+        }
+
+        .profile-card:hover::before {
+            height: 100%;
+        }
+
+        .profile-image-container {
+            width: 150px;
+            height: 150px;
+            margin: 0 auto 20px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 4px solid var(--primary);
+            box-shadow: 0 4px 15px rgba(71, 85, 105, 0.2);
+        }
+
+        .profile-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .profile-name {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 8px;
+        }
+
+        .profile-title {
+            font-size: 1rem;
+            color: var(--primary);
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .profile-location {
+            font-size: 0.95rem;
+            color: var(--text-light);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .profile-details {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 20px;
+            padding-top: 20px;
+            border-top: 1px solid var(--border);
+        }
+
+        .profile-detail-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .detail-label {
+            font-weight: 600;
+            color: var(--text);
+            font-size: 0.95rem;
+        }
+
+        .detail-value {
+            color: var(--text-light);
+            font-size: 0.95rem;
+        }
+
+        .target-industries {
+            padding-top: 20px;
+            border-top: 1px solid var(--border);
+        }
+
+        .target-industries h4 {
+            font-size: 1.1rem;
+            color: var(--text);
+            margin-bottom: 12px;
+            text-align: left;
+        }
+
+        .industry-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .industry-tag {
+            padding: 6px 14px;
+            background: rgba(71, 85, 105, 0.08);
+            color: var(--primary);
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            border: 1px solid rgba(71, 85, 105, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .industry-tag:hover {
+            background: var(--primary);
+            color: white;
+            border-color: transparent;
+            transform: translateY(-2px);
+        }
     </style>
 </head>
 <body>
@@ -340,9 +474,6 @@
             <div class="about-hero-text">
                 <h1>About <span class="accent">Me</span></h1>
             </div>
-            <div class="about-hero-image">
-                <img src="ashvath2.png" alt="Ashvath Cheppalli">
-            </div>
         </div>
     </section>
 
@@ -374,6 +505,32 @@
                 </div>
 
                 <div class="about-sidebar">
+                    <!-- Profile Card -->
+                    <div class="profile-card">
+                        <div class="profile-image-container">
+                            <img src="ashvath2.png" alt="Ashvath Cheppalli" class="profile-image">
+                        </div>
+                        <h3 class="profile-name">Ashvath Cheppalli</h3>
+                        <p class="profile-title">AI & Machine Learning Engineer</p>
+                        <p class="profile-location">
+                            <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24" style="display: inline-block; vertical-align: middle; margin-right: 5px;">
+                                <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+                            </svg>
+                            Boston, MA
+                        </p>
+                        
+                        <div class="profile-details">
+                            <div class="profile-detail-item">
+                                <span class="detail-label">Experience</span>
+                                <span class="detail-value">2+ Years</span>
+                            </div>
+                            <div class="profile-detail-item">
+                                <span class="detail-label">Focus</span>
+                                <span class="detail-value">AI & ML</span>
+                            </div>
+                        </div>
+                    </div>
+
                     <!-- Resume Card -->
                     <div class="info-card">
                         <h3>My Resume</h3>
@@ -395,32 +552,6 @@
                                 Download
                             </a>
                         </div>
-                    </div>
-
-                    <div class="info-card">
-                        <h3>Quick Facts</h3>
-                        <ul class="facts-list">
-                            <li>
-                                <span class="fact-label">Location:</span>
-                                <span class="fact-value">Boston, MA</span>
-                            </li>
-                            <li>
-                                <span class="fact-label">Experience:</span>
-                                <span class="fact-value">2+ Years</span>
-                            </li>
-                            <li>
-                                <span class="fact-label">Focus:</span>
-                                <span class="fact-value">AI & ML</span>
-                            </li>
-                            
-                            <li style="display: block;">
-                               <span class="fact-label" style="display: block; margin-bottom: 8px;">Education:</span>
-                               <span class="fact-value" style="display: block;">
-                               B.Tech in AIML, Chennai (2025)<br>
-                               MS in AI, Boston (Fall 2025 - Present)
-                               </span>
-                            </li>
-                        </ul>
                     </div>
                 </div>
             </div>
@@ -512,9 +643,9 @@
     <!-- Education Section -->
     <section class="education-section">
         <div class="education-container">
-            <h2 class="section-title">Education</h2>
-
             <div class="education-grid">
+                <h2 class="section-title">Education</h2>
+
                 <!-- Northeastern University -->
                 <div class="education-card">
                     <div class="education-header">
