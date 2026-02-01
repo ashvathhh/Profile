@@ -1218,4 +1218,13 @@ footer p {
     left: 0;
     transform: none;
 }
+/* FIX: Education section title alignment */
+.education-section .section-title {
+    text-align: left;
+    display: inline-block;
+}
+.education-section .section-title::after {
+    left: 0;
+    transform: none;
+}
 
