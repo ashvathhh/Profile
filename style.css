@@ -1208,3 +1208,14 @@ footer p {
         width: 100%;
     }
 }
+/* FIX: Skills section title alignment */
+.skills-section .section-title {
+    text-align: left;
+    display: inline-block;
+}
+
+.skills-section .section-title::after {
+    left: 0;
+    transform: none;
+}
+
