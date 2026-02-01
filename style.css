@@ -1228,3 +1228,16 @@ footer p {
     transform: none;
 }
 
+/* FINAL FIX: Education title underline precision */
+.education-section .section-title {
+    display: inline-block;
+    width: fit-content;
+}
+
+.education-section .section-title::after {
+    left: 0;
+    transform: none;
+}
+
+
+
