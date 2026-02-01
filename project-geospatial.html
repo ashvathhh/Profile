@@ -80,23 +80,31 @@
         .project-section ul {
             list-style: none;
             padding: 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
         }
 
         .project-section ul li {
             font-size: 1.05rem;
             color: var(--text-light);
             line-height: 1.8;
-            margin-bottom: 15px;
-            padding-left: 25px;
+            margin-bottom: 0;
+            padding: 20px;
             position: relative;
+            background: var(--bg-secondary);
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            transition: all 0.3s ease;
+        }
+
+        .project-section ul li:hover {
+            box-shadow: 0 4px 15px rgba(71, 85, 105, 0.15);
+            transform: translateY(-3px);
         }
 
         .project-section ul li::before {
-            content: '→';
-            position: absolute;
-            left: 0;
-            color: var(--primary);
-            font-weight: bold;
+            content: none;
         }
 
         .tech-stack {
@@ -155,6 +163,63 @@
             color: var(--primary);
         }
 
+        /* Flowchart styles */
+        .flowchart {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin: 30px 0;
+            max-width: 800px;
+        }
+
+        .flowchart-step {
+            background: var(--bg-secondary);
+            padding: 20px 25px;
+            border-radius: 8px;
+            border-left: 4px solid var(--primary);
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .flowchart-step:hover {
+            box-shadow: 0 4px 15px rgba(71, 85, 105, 0.15);
+            transform: translateX(5px);
+        }
+
+        .flowchart-step::after {
+            content: '↓';
+            position: absolute;
+            bottom: -25px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 1.5rem;
+            color: var(--primary);
+        }
+
+        .flowchart-step:last-child::after {
+            content: none;
+        }
+
+        .step-number {
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 30px;
+            font-weight: 700;
+            margin-right: 15px;
+            font-size: 0.9rem;
+        }
+
+        .step-content {
+            display: inline;
+            color: var(--text-light);
+            font-size: 1.05rem;
+        }
+
         @media (max-width: 768px) {
             .project-detail {
                 padding: 100px 30px 60px;
@@ -167,6 +232,10 @@
             .project-meta {
                 flex-direction: column;
                 gap: 15px;
+            }
+
+            .flowchart {
+                max-width: 100%;
             }
         }
     </style>
@@ -427,33 +496,6 @@
                 property assessment automation. The system's ability to determine building orientation at scale enables data-driven 
                 decisions for energy efficiency, urban planning, and geographic analytics.
             </p>
-        </div>
-
-        <!-- Performance Optimizations -->
-        <div class="project-section">
-            <h2>Performance Optimizations</h2>
-            <ul>
-                <li><strong>Streaming JSON Parsing:</strong> ijson processes GeoJSON incrementally, yielding 95% memory savings versus traditional json.load()</li>
-                <li><strong>Early Exit Strategy:</strong> Stops searching after finding 5 buildings in dense areas, reducing unnecessary processing</li>
-                <li><strong>Bounding Box Pre-filter:</strong> O(1) coordinate comparison eliminates 99%+ buildings before expensive Shapely distance calculations</li>
-                <li><strong>HTTP Session Reuse:</strong> Singleton session with connection pooling eliminates TCP handshake overhead, improving API throughput by 40%</li>
-                <li><strong>Adaptive Timeout Configuration:</strong> Different timeouts for geocoding (5s), Overpass queries (8s), and Overpass server (5s) optimize for fail-fast behavior</li>
-                <li><strong>Smart Caching Strategy:</strong> 24-hour TTL cache for geocoding, Overpass data, and final orientations prevents redundant processing</li>
-                <li><strong>Reduced Radius Attempts:</strong> Only tries [100m, 200m] instead of [100m, 200m, 500m, 1000m], cutting search time by 50% for typical queries</li>
-            </ul>
-        </div>
-
-        <!-- Future Enhancements -->
-        <div class="project-section">
-            <h2>Future Enhancements</h2>
-            <ul>
-                <li>Expand coverage to all 50 US states using Microsoft Buildings global dataset</li>
-                <li>Implement PostgreSQL/PostGIS backend with persistent spatial indexing for production scale</li>
-                <li>Add machine learning model to predict orientation confidence scores based on street patterns</li>
-                <li>Develop REST API with FastAPI for web service integration</li>
-                <li>Create visualization dashboard showing orientation vectors on interactive maps</li>
-                <li>Integrate satellite imagery analysis for validation and confidence scoring</li>
-            </ul>
         </div>
     </div>
 
