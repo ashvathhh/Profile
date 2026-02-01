@@ -79,7 +79,10 @@
 
         .project-section ul {
             list-style: none;
-            padding: 0;
+            padding: 25px;
+            background: var(--bg-secondary);
+            border-radius: 8px;
+            border: 1px solid var(--border);
         }
 
         .project-section ul li {
@@ -87,16 +90,16 @@
             color: var(--text-light);
             line-height: 1.8;
             margin-bottom: 15px;
-            padding-left: 25px;
+            padding-left: 0;
             position: relative;
         }
 
+        .project-section ul li:last-child {
+            margin-bottom: 0;
+        }
+
         .project-section ul li::before {
-            content: '→';
-            position: absolute;
-            left: 0;
-            color: var(--primary);
-            font-weight: bold;
+            content: none;
         }
 
         .tech-stack {
@@ -143,6 +146,63 @@
             color: var(--text-light);
         }
 
+        /* Flowchart styles */
+        .flowchart {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin: 30px 0;
+            max-width: 800px;
+        }
+
+        .flowchart-step {
+            background: var(--bg-secondary);
+            padding: 20px 25px;
+            border-radius: 8px;
+            border-left: 4px solid var(--primary);
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .flowchart-step:hover {
+            box-shadow: 0 4px 15px rgba(71, 85, 105, 0.15);
+            transform: translateX(5px);
+        }
+
+        .flowchart-step::after {
+            content: '↓';
+            position: absolute;
+            bottom: -25px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 1.5rem;
+            color: var(--primary);
+        }
+
+        .flowchart-step:last-child::after {
+            content: none;
+        }
+
+        .step-number {
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 30px;
+            font-weight: 700;
+            margin-right: 15px;
+            font-size: 0.9rem;
+        }
+
+        .step-content {
+            display: inline;
+            color: var(--text-light);
+            font-size: 1.05rem;
+        }
+
         @media (max-width: 768px) {
             .project-detail {
                 padding: 100px 30px 60px;
@@ -155,6 +215,10 @@
             .project-meta {
                 flex-direction: column;
                 gap: 15px;
+            }
+
+            .flowchart {
+                max-width: 100%;
             }
         }
     </style>
@@ -205,7 +269,7 @@
             </div>
 
             <div class="project-links">
-                <a href="https://github.com/ashvathhh/AI-OPTIMIZED-ENERGY-CONSUMPTION-FORECASTING" class="btn btn-primary" target="_blank">View on GitHub</a>
+                <a href="https://github.com/ashvathhh/AI-OPTIMIZED-ENERGY-CONSUMPTION-FORECASTING" class="btn btn-primary" target="_blank">View GitHub Repository</a>
                 <a href="projects.html" class="btn btn-secondary">Back to Projects</a>
             </div>
         </div>
@@ -228,39 +292,60 @@
                 </div>
                 <div class="metric-card">
                     <div class="metric-value">95%</div>
-                    <div class="metric-label">Improvement in MAE</div>
+                    <div class="metric-label">MAE Improvement</div>
                 </div>
             </div>
         </div>
 
-        <!-- Overview -->
+        <!-- Project Overview -->
         <div class="project-section">
-            <h2>Overview</h2>
+            <h2>Project Overview</h2>
             <p>
-                Developed a machine learning regression model on 1M+ household power consumption records achieving 0.038 kWh 
-                Mean Absolute Error (95% improvement) for real-time energy forecasting. The system analyzes historical consumption 
-                patterns to predict future energy usage, enabling optimized grid management and cost reduction.
+                Developed a machine learning regression model on 1M+ household power consumption records from 2006-2010 achieving 
+                0.038 kWh Mean Absolute Error for real-time energy forecasting. The system analyzes historical consumption patterns 
+                including global active power, reactive power, voltage, and sub-metering data to predict future energy usage.
             </p>
             <p>
-                Performed extensive feature engineering and exploratory data analysis using Python (pandas, scikit-learn) to identify 
-                peak consumption patterns crucial for grid optimization. The Linear Regression model achieved an exceptional 99.98% R² 
-                score, demonstrating highly accurate predictions for household power consumption.
+                Performed extensive feature engineering and exploratory data analysis using Python with pandas and scikit-learn to 
+                identify peak consumption patterns crucial for grid optimization. The Linear Regression model achieved an exceptional 
+                99.98% R² score with 95% improvement in MAE, demonstrating highly accurate predictions for household power consumption 
+                enabling optimized grid management and cost reduction.
             </p>
         </div>
 
-        <!-- Technical Implementation -->
+        <!-- Core Algorithm -->
         <div class="project-section">
-            <h2>Technical Implementation</h2>
-            <ul>
-                <li>Processed and cleaned 1M+ household power consumption records from 2006-2010</li>
-                <li>Performed feature engineering: extracted temporal features (hour, day, month) and calculated power metrics</li>
-                <li>Conducted comprehensive EDA with 10+ visualizations identifying consumption patterns</li>
-                <li>Implemented Linear Regression model with StandardScaler for feature normalization</li>
-                <li>Applied Recursive Feature Elimination (RFE) for optimal feature selection</li>
-                <li>Achieved 0.038 kWh MAE and 99.98% R² score on test dataset</li>
-                <li>Created residual analysis and diagnostic plots for model validation</li>
-                <li>Identified peak consumption hours (8-9 AM and 8-9 PM) for demand management</li>
-            </ul>
+            <h2>Core Algorithm</h2>
+            <div class="flowchart">
+                <div class="flowchart-step">
+                    <span class="step-number">1</span>
+                    <span class="step-content">Load 1M+ household power consumption records from CSV dataset</span>
+                </div>
+                <div class="flowchart-step">
+                    <span class="step-number">2</span>
+                    <span class="step-content">Clean data by replacing missing values and removing 4,069 null entries</span>
+                </div>
+                <div class="flowchart-step">
+                    <span class="step-number">3</span>
+                    <span class="step-content">Extract temporal features (hour, day, month) from datetime columns</span>
+                </div>
+                <div class="flowchart-step">
+                    <span class="step-number">4</span>
+                    <span class="step-content">Apply StandardScaler normalization to numerical features</span>
+                </div>
+                <div class="flowchart-step">
+                    <span class="step-number">5</span>
+                    <span class="step-content">Train Linear Regression model on 80% training data split</span>
+                </div>
+                <div class="flowchart-step">
+                    <span class="step-number">6</span>
+                    <span class="step-content">Evaluate model performance using MAE, RMSE, and R² metrics</span>
+                </div>
+                <div class="flowchart-step">
+                    <span class="step-number">7</span>
+                    <span class="step-content">Generate predictions and visualize residuals for validation</span>
+                </div>
+            </div>
         </div>
 
         <!-- Technologies Used -->
@@ -274,19 +359,38 @@
                 <span class="tech-item">Matplotlib</span>
                 <span class="tech-item">Seaborn</span>
                 <span class="tech-item">Linear Regression</span>
-                <span class="tech-item">Time Series Analysis</span>
             </div>
+        </div>
+
+        <!-- Technical Implementation -->
+        <div class="project-section">
+            <h2>Technical Implementation</h2>
+            <ul>
+                <li><strong>Data Preprocessing:</strong> Handled 1M+ records with 0.39% missing values using dropna() and feature normalization</li>
+                <li><strong>Feature Engineering:</strong> Extracted temporal features (hour, day, month) capturing daily and seasonal consumption patterns</li>
+                <li><strong>Model Training:</strong> Linear Regression with StandardScaler achieving 99.98% R² on 80-20 train-test split</li>
+                <li><strong>Performance Analysis:</strong> Generated residual plots, actual vs predicted visualizations, and error distribution analysis</li>
+            </ul>
+        </div>
+
+        <!-- Key Features -->
+        <div class="project-section">
+            <h2>Key Features</h2>
+            <ul>
+                <li><strong>Time Series Analysis:</strong> Identified peak consumption hours at 8-9 AM and 8-9 PM for demand management</li>
+                <li><strong>Comprehensive EDA:</strong> 10+ visualizations revealing consumption patterns and seasonal variations</li>
+                <li><strong>High Accuracy:</strong> 99.98% R² score demonstrating excellent model fit and prediction reliability</li>
+                <li><strong>Scalable Pipeline:</strong> Efficient data processing supporting real-time forecasting applications</li>
+            </ul>
         </div>
 
         <!-- Challenges & Solutions -->
         <div class="project-section">
             <h2>Challenges & Solutions</h2>
             <ul>
-                <li><strong>Large Dataset Processing:</strong> Handled 1M+ records efficiently using pandas optimization techniques and chunked processing</li>
-                <li><strong>Missing Values:</strong> Implemented data cleaning pipeline to handle 4,069 missing entries (0.39% of data)</li>
-                <li><strong>Feature Selection:</strong> Applied RFE to identify most significant features while maintaining model performance</li>
-                <li><strong>Model Optimization:</strong> Achieved 95% improvement in MAE through feature engineering and hyperparameter tuning</li>
-                <li><strong>Temporal Patterns:</strong> Extracted time-based features to capture daily and seasonal consumption variations</li>
+                <li><strong>Large Dataset Processing:</strong> Handled 1M+ records efficiently using pandas optimization and chunked processing techniques</li>
+                <li><strong>Missing Values:</strong> Implemented cleaning pipeline handling 4,069 missing entries (0.39% of data) through strategic removal</li>
+                <li><strong>Feature Selection:</strong> Applied Recursive Feature Elimination identifying most significant predictors while maintaining performance</li>
             </ul>
         </div>
 
@@ -302,21 +406,8 @@
                 Identified critical insights including peak consumption periods (morning 8-9 AM and evening 8-9 PM) and seasonal 
                 patterns essential for grid optimization. The analysis revealed strong correlations between global active power, 
                 voltage, and current consumption, enabling utility providers to make data-driven decisions for efficient energy 
-                distribution and load management. The system provides a scalable solution for smart grid implementations and 
-                sustainable energy management practices.
+                distribution and load management.
             </p>
-        </div>
-
-        <!-- Key Findings -->
-        <div class="project-section">
-            <h2>Key Findings</h2>
-            <ul>
-                <li>Peak consumption hours identified at 8-9 AM and 8-9 PM with highest demand</li>
-                <li>Seasonal variations showed higher winter consumption and lower summer usage</li>
-                <li>Strong correlation (0.9+) between global active power and current consumption</li>
-                <li>Voltage stability maintained within 238-242V range (95% of readings)</li>
-                <li>Sub-metering analysis revealed kitchen and laundry as primary consumption areas</li>
-            </ul>
         </div>
     </div>
 
