@@ -442,144 +442,25 @@
         <!-- Benchmark Results -->
         <div class="project-section">
             <h2>Benchmark Results</h2>
-            <p>Results measured on 200 SST-2 validation samples. INT8-PTQ provides the best overall tradeoff: fast, lightweight and accurate.</p>
-            <table class="benchmark-table">
-                <thead>
-                    <tr>
-                        <th>Mode</th>
-                        <th>Accuracy</th>
-                        <th>Avg Latency</th>
-                        <th>P99 Latency</th>
-                        <th>Memory</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>FP32 (Baseline)</td>
-                        <td>91.5%</td>
-                        <td>58.5 ms</td>
-                        <td>92.8 ms</td>
-                        <td>255 MB</td>
-                    </tr>
-                    <tr>
-                        <td>FP16</td>
-                        <td>91.5%</td>
-                        <td>245.9 ms</td>
-                        <td>568.3 ms</td>
-                        <td>128 MB</td>
-                    </tr>
-                    <tr class="highlight-row">
-                        <td>INT8-PTQ ✦ Recommended</td>
-                        <td>91.0%</td>
-                        <td>26.7 ms</td>
-                        <td>59.1 ms</td>
-                        <td>91 MB</td>
-                    </tr>
-                    <tr>
-                        <td>INT8-QAT</td>
-                        <td>87.0%</td>
-                        <td>22.3 ms</td>
-                        <td>38.6 ms</td>
-                        <td>91 MB</td>
-                    </tr>
-                </tbody>
-            </table>
+            <p>
+                Results measured on 200 SST-2 validation samples. The FP32 baseline achieves 91.5% accuracy at 58.5 ms average latency using 255 MB of memory. FP16 matches FP32 accuracy but runs 4x slower on CPU due to lack of native FP16 compute. INT8-PTQ achieves 91.0% accuracy at 26.7 ms average latency using only 91 MB, making it the best overall tradeoff. INT8-QAT is the fastest at 22.3 ms but drops to 87.0% accuracy due to insufficient fine-tuning data.
+            </p>
         </div>
 
         <!-- Robustness Results -->
         <div class="project-section">
             <h2>Robustness Evaluation</h2>
-            <p>FP32 and INT8-PTQ degrade nearly identically under all perturbation types, confirming quantization does not amplify brittleness under noisy inputs.</p>
-            <table class="benchmark-table">
-                <thead>
-                    <tr>
-                        <th>Perturbation</th>
-                        <th>FP32 Accuracy</th>
-                        <th>INT8-PTQ Accuracy</th>
-                        <th>Drop</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Clean</td>
-                        <td>91.0%</td>
-                        <td>92.0%</td>
-                        <td>N/A</td>
-                    </tr>
-                    <tr>
-                        <td>Typo Injection (10%)</td>
-                        <td>64.0%</td>
-                        <td>63.0%</td>
-                        <td>~27 pp</td>
-                    </tr>
-                    <tr>
-                        <td>Word Dropout (15%)</td>
-                        <td>86.0%</td>
-                        <td>85.0%</td>
-                        <td>~5 pp</td>
-                    </tr>
-                    <tr>
-                        <td>Char Noise (8%)</td>
-                        <td>72.0%</td>
-                        <td>71.0%</td>
-                        <td>~19 pp</td>
-                    </tr>
-                </tbody>
-            </table>
+            <p>
+                FP32 and INT8-PTQ degrade nearly identically under all perturbation types. Typo injection (10%) drops both models by roughly 27 percentage points, character noise (8%) by around 19 points and word dropout (15%) by only 5 points. The gap between the two modes never exceeds 1 percentage point, confirming quantization does not amplify brittleness under noisy inputs.
+            </p>
         </div>
 
         <!-- Layer Sensitivity -->
         <div class="project-section">
             <h2>Layer Sensitivity Analysis</h2>
-            <p>Each of the 38 quantizable Linear modules was quantized individually to INT8, with all other layers kept at FP32. Accuracy was measured against the 91.5% FP32 baseline.</p>
-            <table class="benchmark-table">
-                <thead>
-                    <tr>
-                        <th>Layer(s)</th>
-                        <th>Accuracy</th>
-                        <th>Delta</th>
-                        <th>Sensitivity</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>layer.2.ffn</td>
-                        <td>88.5%</td>
-                        <td>−3.0 pp</td>
-                        <td><span class="sensitivity-badge badge-high">High</span></td>
-                    </tr>
-                    <tr>
-                        <td>layer.2</td>
-                        <td>89.0%</td>
-                        <td>−2.5 pp</td>
-                        <td><span class="sensitivity-badge badge-high">High</span></td>
-                    </tr>
-                    <tr>
-                        <td>layer.0, layer.0.ffn, layer.3, layer.3.ffn</td>
-                        <td>90.5%</td>
-                        <td>−1.0 pp</td>
-                        <td><span class="sensitivity-badge badge-moderate">Moderate</span></td>
-                    </tr>
-                    <tr>
-                        <td>layer.1.ffn, layer.2.attention</td>
-                        <td>91.0%</td>
-                        <td>−0.5 pp</td>
-                        <td><span class="sensitivity-badge badge-low">Low</span></td>
-                    </tr>
-                    <tr>
-                        <td>layer.1</td>
-                        <td>92.0%</td>
-                        <td>+0.5 pp</td>
-                        <td><span class="sensitivity-badge badge-none">None (Improved)</span></td>
-                    </tr>
-                    <tr>
-                        <td>Layers 4, 5, classifier, pre_classifier</td>
-                        <td>91.5%</td>
-                        <td>0.0 pp</td>
-                        <td><span class="sensitivity-badge badge-none">None</span></td>
-                    </tr>
-                </tbody>
-            </table>
+            <p>
+                Each of the 38 quantizable Linear modules was quantized individually to INT8 with all other layers kept at FP32. The middle feed-forward layers carry the most risk: quantizing layer.2.ffn alone drops accuracy by 3.0 percentage points and layer.2 by 2.5 points. Layers 0, 3 and their FFN sublayers show moderate sensitivity at 1.0 point. Layers 4 and 5 along with the classifier and pre-classifier heads show zero sensitivity. Layer 1 is the only component that improves slightly under quantization, likely due to a regularisation effect.
+            </p>
         </div>
 
         <!-- Technical Implementation -->
