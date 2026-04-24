@@ -301,7 +301,7 @@ nav {
     justify-content: flex-start;
 }
 
-/* ── Buttons: pill hard-shadow style ── */
+/* ── Buttons: glass + hard shadow pill style ── */
 .btn {
     padding: 12px 32px;
     border-radius: 999px;
@@ -310,30 +310,32 @@ nav {
     font-size: 0.95rem;
     display: inline-block;
     position: relative;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
     transition: box-shadow 0.1s ease, transform 0.1s ease;
 }
 
 .btn-primary {
-    background: transparent;
+    background: rgba(71, 85, 105, 0.12);
     color: var(--primary);
-    border: 2.5px solid var(--primary);
-    box-shadow: 5px 5px 0px var(--primary);
+    border: 1.5px solid rgba(71, 85, 105, 0.35);
+    box-shadow: 5px 5px 0px var(--primary), inset 0 1px 0 rgba(255,255,255,0.3);
 }
 
 .btn-primary:hover {
-    box-shadow: 2px 2px 0px var(--primary);
+    box-shadow: 2px 2px 0px var(--primary), inset 0 1px 0 rgba(255,255,255,0.3);
     transform: translate(3px, 3px);
 }
 
 .btn-secondary {
-    background: transparent;
+    background: rgba(71, 85, 105, 0.12);
     color: var(--primary);
-    border: 2.5px solid var(--primary);
-    box-shadow: 5px 5px 0px var(--primary);
+    border: 1.5px solid rgba(71, 85, 105, 0.35);
+    box-shadow: 5px 5px 0px var(--primary), inset 0 1px 0 rgba(255,255,255,0.3);
 }
 
 .btn-secondary:hover {
-    box-shadow: 2px 2px 0px var(--primary);
+    box-shadow: 2px 2px 0px var(--primary), inset 0 1px 0 rgba(255,255,255,0.3);
     transform: translate(3px, 3px);
 }
 
@@ -1088,29 +1090,27 @@ footer p {
 }
 
 .cta-section .btn-primary {
-    background: transparent;
+    background: rgba(255, 255, 255, 0.12);
     color: white;
-    border: 2.5px solid white;
-    box-shadow: 5px 5px 0px white;
+    border: 1.5px solid rgba(255, 255, 255, 0.4);
+    box-shadow: 5px 5px 0px rgba(255,255,255,0.5), inset 0 1px 0 rgba(255,255,255,0.3);
 }
 
 .cta-section .btn-primary:hover {
-    box-shadow: 2px 2px 0px white;
+    box-shadow: 2px 2px 0px rgba(255,255,255,0.5), inset 0 1px 0 rgba(255,255,255,0.3);
     transform: translate(3px, 3px);
-    background: transparent;
 }
 
 .cta-section .btn-secondary {
-    background: transparent;
+    background: rgba(255, 255, 255, 0.12);
     color: white;
-    border: 2.5px solid white;
-    box-shadow: 5px 5px 0px white;
+    border: 1.5px solid rgba(255, 255, 255, 0.4);
+    box-shadow: 5px 5px 0px rgba(255,255,255,0.5), inset 0 1px 0 rgba(255,255,255,0.3);
 }
 
 .cta-section .btn-secondary:hover {
-    box-shadow: 2px 2px 0px white;
+    box-shadow: 2px 2px 0px rgba(255,255,255,0.5), inset 0 1px 0 rgba(255,255,255,0.3);
     transform: translate(3px, 3px);
-    background: transparent;
 }
 
 /* Contact Section Title Fix */
